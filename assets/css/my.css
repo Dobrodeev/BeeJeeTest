@@ -1,0 +1,15 @@
+.border1{
+	border:1px solid red;
+}
+.border0{
+	border:1px solid green;
+}
+.name_tz {
+    height: 100px;
+    overflow-y: auto;
+}
+.pag a {
+    cursor: pointer;
+    padding: 2px;
+    margin: 5px;
+}
