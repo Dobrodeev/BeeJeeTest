@@ -3,8 +3,11 @@
         <div class="col-md-4">
             <input type="text" name="login" placeholder="enter login" value="<?php echo (isset($_REQUEST['login']) && $_REQUEST['login']!='') ? addslashes(trim($_REQUEST['login'])) : ''?>">
         </div>
+        <!--<div class="col-md-4">
+            <input type="email" name="email" placeholder="enter email" value="<?php /*echo (isset($_REQUEST['email']) && $_REQUEST['email']!='') ? addslashes(trim($_REQUEST['email'])) : ''*/?>">
+        </div>-->
         <div class="col-md-4">
-            <input type="email" name="email" placeholder="enter email" value="<?php echo (isset($_REQUEST['email']) && $_REQUEST['email']!='') ? addslashes(trim($_REQUEST['email'])) : ''?>">
+            <input type="password" name="password" placeholder="enter password" value="<?php echo (isset($_REQUEST['password']) && $_REQUEST['password']!='') ? addslashes(trim($_REQUEST['password'])) : ''?>">
         </div>
         <div class="col-md-4">
             <select name="status">
@@ -54,3 +57,11 @@
 	</div>
 	<input type="hidden" name="action" value="add">
 </form>
+<?php
+/*echo 'логин: '.$_REQUEST['login'].'<br>';
+echo 'пароль: '.$_REQUEST['password'].'<br>';*/
+$login = $_REQUEST['login'];
+$password = $_REQUEST['password'];
+$queryAdmin = 'SELECT * FROM bj_users WHERE login="'.$login.'" AND password="'.$password.'" AND type=0';
+//echo 'query: '.$queryAdmin;
+?>
