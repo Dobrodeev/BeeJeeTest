@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_URI'] != '/') {
 
 if ($module == '') $module = 'tasks';
 if (!file_exists('controller/'.$module . '.php')){
-		header('loaction: /');
+		header('location: /');
 }
 
 if (file_exists('controller/'.$module . '.php')){
