@@ -1,6 +1,27 @@
 <?php
 include 'model/Tasks.php';
-$Model = new Tasks();
-
+$ModelTasks = new Tasks();
+$page=1;
+if ($_REQUEST['Go'])
+{
+    echo 'Заходим в админку.';
+}
+if(isset($_REQUEST['page']) && $_REQUEST['page']!='')$page=addslashes(trim($_REQUEST['page']));
+$array_filter=array();$filter_str='';
+if(isset($_REQUEST['login']) && $_REQUEST['login']!=''){
+    $array_filter[] = " login LIKE '%".addslashes(trim($_REQUEST['login']))."%' ";
+}
+if(isset($_REQUEST['email']) && $_REQUEST['email']!=''){
+    $array_filter[] = " email LIKE '%".addslashes(trim($_REQUEST['email']))."%' ";
+}
+if(isset($_REQUEST['status']) && $_REQUEST['status']!='-1'){
+    $array_filter[] = " status=".intval(addslashes(trim($_REQUEST['status'])))." ";
+}
+if(!empty($array_filter)){
+    $filter_str = implode(" and ",$array_filter);
+}
+$tasks = $ModelTasks->getTasks($filter_str, $page);
+$cnt = $ModelTasks->getCNT($filter_str, $page);
+$pagination = $ModelTasks->getPagination($page, $cnt);
 include 'view/admin.php';
 
