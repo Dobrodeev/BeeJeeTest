@@ -2,11 +2,7 @@
 include 'model/Tasks.php';
 $ModelTasks = new Tasks();
 $page=1;
-if ($_REQUEST['Go'])
-{
-    echo 'Заходим в админку.';
-//    header('Location: /');
-}
+
 if(isset($_REQUEST['page']) && $_REQUEST['page']!='')$page=addslashes(trim($_REQUEST['page']));
 $array_filter=array();$filter_str='';
 if(isset($_REQUEST['login']) && $_REQUEST['login']!=''){

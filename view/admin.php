@@ -1,60 +1,19 @@
 <h3>Admin page</h3>
-<form action="" name="form" id="our-form">
-    <div class="form-group">
-        <label for="exampleInputEmail1">Login</label>
-        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Login" name="login">
-    </div>
-    <div class="form-group">
-        <label for="exampleInputPassword1">Password</label>
-        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password">
-    </div>
-    <!--<button type="submit" class="btn btn-default" name="Go">Submit</button>-->
-    <input type="submit" name="Go" value="Зайти в админку">
-    <div class="col-md-12">
-<!--
-        <div class="col-md-4">
-            <select name="status">
-                <option value="-1" selected>Все статусы</option>
-                <option value="0" <?php /*if(isset($_REQUEST['status']) && $_REQUEST['status']==0){ */?>selected<?php /*} */?>>Выполненные</option>
-                <option value="1" <?php /*if(isset($_REQUEST['status']) && $_REQUEST['status']==1){ */?>selected<?php /*} */?>>Невыполненные</option>
-            </select>
-        </div>
-        <input type="hidden" name="page" id="page" value="1">
-        <div class="col-md-12">
-            <input type="submit" value="Filter" name="filter"> <br>
-            <input type="submit" value="Edit" name="edit">
-        </div>
-    </div>
-<?php /**/?>
-    <div class="col-md-12 row">
-        <?php
-/*        if ($tasks && !empty($tasks))
-        {
-            foreach($tasks as $ts){
-                */?>
-                <div class="col-md-4 border<?php /*echo $ts['status'];*/?>">
-                    <div class="name_t">Задача №<?php /*echo $ts['task_id'];*/?></div>
-                    <div class="name_l"><?php /*echo $ts['login'];*/?></div>
-                    <div class="name_e"><?php /*echo $ts['email'];*/?></div>
-                    <div class="name_tz"><?php /*echo $ts['text'];*/?></div>
-                    <div class="name_stat"><?php /*echo $ModelTasks->getStatus($ts['status']);*/?></div>
-                </div>
-            <?php /*}*/?>
-        <?php /*}else{ */?>
-            <h4>Еще нет созданных задач!</h4>
-        <?php /*} */?>
-    </div>
-    <div class="col-md-12 pag"><?/*=$pagination*/?></div>
+<?php if (!empty($tasks)){ ?>
+<form action="" method="post">
+    <?php foreach ($tasks
 
-    <div class="col-md-12">
+                   as $t) { ?>
+    <div class="one_t">
+        <h4>Задача #<?php echo $t['id']; ?></h4>
+        <input type="text" value="<?php echo $t['login']; ?>" name="login[]"><br>
+        <input type="text" value="<?php echo $t['email']; ?>" name="email[]"><br>
 
-        <div class="col-md-4">
-            <div>Редактировать задачу</div>
-        </div>
-
-        <div class="col-md-12">
-
-            <input type="submit" value="Edit" name="edit">
-        </div>
-    </div>-->
+        <textarea name="task[]"><?php echo $t['text']; ?></textarea><br> <input type="checkbox" name="complete[]"
+                                                                                <?php if ($t['status'] == 0) { ?>checked<?php }
+                                                                                }
+                                                                                } ?>Выполнено <br>
+<!--        <input type="submit" name="comein" value="comein">-->
+    </div>
+    <?php ?>
 </form>
