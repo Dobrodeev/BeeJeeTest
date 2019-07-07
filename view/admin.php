@@ -1,3 +1,28 @@
+<?php
+//session_start();
+if ($_REQUEST['come']) {
+    $login = $_REQUEST['login'];
+    $password = md5($_REQUEST['password']);
+    define('USER_TYPE', 0);
+    $query = 'SELECT * FROM bj_users WHERE login="' . $login . '" AND password="' . $password . '" AND type=0';
+    $result = $ModelTasks->login($query);
+
+    if ($result) {
+        echo 'Come in. <br>';
+        /*$_SESSION = array();
+        session_destroy();*/
+     /*   session_start();
+        header("Cache-control: private");*/
+        $_SESSION['type'] = 'admin';
+        echo '$_SESSION["type"] = '.$_SESSION['type'];
+//        header('Location: /');
+        exit();
+//        echo $adminca;
+    } else {
+        echo 'Не получилось зайти.';
+    }
+}
+?>
 <h3>Admin page</h3>
 <form action="" method="post">
     <div class="form-group">
@@ -35,32 +60,25 @@
                                                                                 } ?>Выполнено <br>
     </div>
     <?php
-    if ($_REQUEST['come']) {
-        if ($_REQUEST['login'] == 'admin' && $_REQUEST['password'] == 123) {
-            echo 'Come in.';
-        } else {
-            echo 'Не получилось зайти.';
-        }
-    }
     /* Если зашел то session_start()
     header: view/tasks.php*/
     /*$_SESSION['admin'] = true{
-        if ($_GET['action'] == 'validate') {
-            //a pokud odpovídají přihlašovací údaje
-            if (($_POST['user'] == $login) && ($_POST['passwd'] == $pass)) {
+    if ($_GET['action'] == 'validate') {
+    //a pokud odpovídají přihlašovací údaje
+    if (($_POST['user'] == $login) && ($_POST['passwd'] == $pass)) {
 
-                session_start();
-                header("Cache-control: private"); // požadováno u některých prohlížečů
+    session_start();
+    header("Cache-control: private"); // požadováno u některých prohlížečů
 
-                //zaregistruje proměnou user_is_logged a nastaví ji na 1
-                $_SESSION["admin"] = 1;
-                //a pošlena úvodní soubor chráněné sekce
-                header("Location: index.php");
+    //zaregistruje proměnou user_is_logged a nastaví ji na 1
+    $_SESSION["admin"] = 1;
+    //a pošlena úvodní soubor chráněné sekce
+    header("Location: index.php");
 
-                exit();
-            }
+    exit();
+    }
 
-        }
+    }
 
     }*/ ?>
 </form>
