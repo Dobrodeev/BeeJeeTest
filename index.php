@@ -1,6 +1,4 @@
 <?php
-/*session_start();
-header("Cache-control: private");*/
 include 'config/config.php';
 include 'view/header.php';
 $module = '';
@@ -26,10 +24,12 @@ if ($_SERVER['REQUEST_URI'] != '/') {
 
 if ($module == '') $module = 'tasks';
 if ($module == 'admin') $module = 'admin';
+
 if (!file_exists('controller/' . $module . '.php')) {
     header('location: /');
 }
 if (file_exists('controller/' . $module . '.php')) {
     include('controller/' . $module . '.php');
 }
+
 include 'view/footer.php';

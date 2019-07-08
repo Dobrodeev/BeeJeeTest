@@ -58,10 +58,6 @@
 	<input type="hidden" name="action" value="add">
 </form>
 <?php
-/*echo 'логин: '.$_REQUEST['login'].'<br>';
-echo 'пароль: '.$_REQUEST['password'].'<br>';*/
-/*$login = $_REQUEST['login'];
-$password = $_REQUEST['password'];
-$queryAdmin = 'SELECT * FROM bj_users WHERE login="'.$login.'" AND password="'.$password.'" AND type=0';*/
-//echo 'query: '.$queryAdmin;
+if ($_SESSION['type'] == 'admin')
+    echo 'Log out';
 ?>

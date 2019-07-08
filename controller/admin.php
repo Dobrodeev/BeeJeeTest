@@ -1,6 +1,4 @@
 <?php
-/*session_start();
-header("Cache-control: private");*/
 include 'model/Tasks.php';
 $ModelTasks = new Tasks();
 $page = 1;
@@ -23,6 +21,22 @@ if (!empty($array_filter)) {
 $tasks = $ModelTasks->getTasks($filter_str, $page);
 $cnt = $ModelTasks->getCNT($filter_str, $page);
 $pagination = $ModelTasks->getPagination($page, $cnt);
-//$name = $ModelTasks->login($query);
-include 'view/admin.php';
 
+if ($_REQUEST['come']) {
+    $login = $_REQUEST['login'];
+    $password = md5($_REQUEST['password']);
+    define('USER_TYPE', 0);
+    $query = 'SELECT * FROM bj_users WHERE login="' . $login . '" AND password="' . $password . '" AND type=0';
+    $result = $ModelTasks->login($query);
+
+    if ($result) {
+        echo 'Come in. <br>';
+        echo '<a href="/">Перейти';
+        $_SESSION['type'] = 'admin';
+//        echo '$_SESSION["type"] = ' . $_SESSION['type'];
+        exit();
+    } else {
+        echo 'Не получилось зайти.';
+    }
+}
+include 'view/admin.php';

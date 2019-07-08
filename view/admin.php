@@ -1,27 +1,4 @@
 <?php
-//session_start();
-if ($_REQUEST['come']) {
-    $login = $_REQUEST['login'];
-    $password = md5($_REQUEST['password']);
-    define('USER_TYPE', 0);
-    $query = 'SELECT * FROM bj_users WHERE login="' . $login . '" AND password="' . $password . '" AND type=0';
-    $result = $ModelTasks->login($query);
-
-    if ($result) {
-        echo 'Come in. <br>';
-        /*$_SESSION = array();
-        session_destroy();*/
-     /*   session_start();
-        header("Cache-control: private");*/
-        $_SESSION['type'] = 'admin';
-        echo '$_SESSION["type"] = '.$_SESSION['type'];
-//        header('Location: /');
-        exit();
-//        echo $adminca;
-    } else {
-        echo 'Не получилось зайти.';
-    }
-}
 ?>
 <h3>Admin page</h3>
 <form action="" method="post">
